@@ -1,0 +1,223 @@
+(djangoPy3Env) Coopers-MacBook-Pro-2:django_orm cooperstrahan$ django-admin startproject book_authors_proj
+(djangoPy3Env) Coopers-MacBook-Pro-2:django_orm cooperstrahan$ ls
+book_authors_proj	users_project
+(djangoPy3Env) Coopers-MacBook-Pro-2:django_orm cooperstrahan$ cd book_authors_proj
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ ls
+book_authors_proj	manage.py
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ mkdir apps
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ cd apps
+(djangoPy3Env) Coopers-MacBook-Pro-2:apps cooperstrahan$ python python ../manage.py startapp books_authors_app
+python: can't open file 'python': [Errno 2] No such file or directory
+(djangoPy3Env) Coopers-MacBook-Pro-2:apps cooperstrahan$ python ../manage.py startapp books_authors_app
+(djangoPy3Env) Coopers-MacBook-Pro-2:apps cooperstrahan$ ls
+books_authors_app
+(djangoPy3Env) Coopers-MacBook-Pro-2:apps cooperstrahan$ cd books_authors_app
+(djangoPy3Env) Coopers-MacBook-Pro-2:books_authors_app cooperstrahan$ touch urls.py
+(djangoPy3Env) Coopers-MacBook-Pro-2:books_authors_app cooperstrahan$ ls
+__init__.py	admin.py	apps.py		migrations	models.py	tests.py	urls.py		views.py
+(djangoPy3Env) Coopers-MacBook-Pro-2:books_authors_app cooperstrahan$ cd ..
+(djangoPy3Env) Coopers-MacBook-Pro-2:apps cooperstrahan$ cd ..
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py makemigrations
+Migrations for 'books_authors_app':
+  apps/books_authors_app/migrations/0001_initial.py:
+    - Create model Author
+    - Create model Book
+    - Add field book_id to author
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying books_authors_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py shell
+Python 3.7.2 (v3.7.2:9a3ffc0492, Dec 24 2018, 02:44:43) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: quit                                                                                                                                                                               
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py shell
+Python 3.7.2 (v3.7.2:9a3ffc0492, Dec 24 2018, 02:44:43) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: Book.objects.create(title="C Sharp", desc="")                                                                                                                                      
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-328fde144d5c> in <module>
+----> 1 Book.objects.create(title="C Sharp", desc="")
+
+NameError: name 'Book' is not defined
+
+In [2]: from apps.books_authors_app.models import *                                                                                                                                        
+
+In [3]: Book.objects.create(title="C Sharp", desc="")                                                                                                                                      
+Out[3]: <Book: Book object>
+
+In [4]: Book.objects.create(title="Java", desc="")                                                                                                                                         
+Out[4]: <Book: Book object>
+
+In [5]: Book.objects.create(title="Python", desc="")                                                                                                                                       
+Out[5]: <Book: Book object>
+
+In [6]: Book.objects.create(title="PHP", desc="")                                                                                                                                          
+Out[6]: <Book: Book object>
+
+In [7]: Book.objects.create(title="Ruby", desc="")                                                                                                                                         
+Out[7]: <Book: Book object>
+
+In [8]: Author.objects.create(first_name="Jane", last_name="Austen")                                                                                                                       
+Out[8]: <Author: Author object>
+
+In [9]: Author.objects.create(first_name="Emily", last_name="Dickinson")                                                                                                                   
+Out[9]: <Author: Author object>
+
+In [10]: Author.objects.create(first_name="Fyodor", last_name="Dostoevsky")                                                                                                                
+Out[10]: <Author: Author object>
+
+In [11]: Author.objects.create(first_name="William", last_name="Shakespeare")                                                                                                              
+Out[11]: <Author: Author object>
+
+In [12]: Author.objects.create(first_name="Lau", last_name="Tzu")                                                                                                                          
+Out[12]: <Author: Author object>
+
+In [13]: quit                                                                                                                                                                              
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> ""
+Migrations for 'books_authors_app':
+  apps/books_authors_app/migrations/0002_author_notes.py:
+    - Add field notes to author
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying books_authors_app.0002_author_notes... OK
+(djangoPy3Env) Coopers-MacBook-Pro-2:book_authors_proj cooperstrahan$ python manage.py shell
+Python 3.7.2 (v3.7.2:9a3ffc0492, Dec 24 2018, 02:44:43) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: s = Books.objects.get(id=1)                                                                                                                                                        
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-79e2a6951fe2> in <module>
+----> 1 s = Books.objects.get(id=1)
+
+NameError: name 'Books' is not defined
+
+In [2]: from apps.books_authors_app.models import *                                                                                                                                        
+
+In [3]: s = Books.objects.get(id=1)                                                                                                                                                        
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-79e2a6951fe2> in <module>
+----> 1 s = Books.objects.get(id=1)
+
+NameError: name 'Books' is not defined
+
+In [4]: s= Book.objects.get(id=1)                                                                                                                                                          
+
+In [5]: s.title = "C#"                                                                                                                                                                     
+
+In [6]: s.save()                                                                                                                                                                           
+
+In [7]: w=Author.objects.get(id=4)                                                                                                                                                         
+
+In [8]: w.first_name = "Bill"                                                                                                                                                              
+
+In [9]: w.save()                                                                                                                                                                           
+
+In [10]: c_sharp = Book.objects.get(id=1)                                                                                                                                                  
+
+In [11]: java = Book.objects.get(id=2)                                                                                                                                                     
+
+In [12]: jane = Author.objects.get(id=1)                                                                                                                                                   
+
+In [13]: c_sharp.author_id.add(jane)                                                                                                                                                       
+
+In [14]: java.author_id.add(jane)                                                                                                                                                          
+
+In [15]: emily = Author.objects.get(id=2)                                                                                                                                                  
+
+In [16]: python = Book.objects.get(id=3)                                                                                                                                                   
+
+In [17]: php = Book.objects.get(id=4)                                                                                                                                                      
+
+In [18]: ruby = Book.objects.get(id=5)                                                                                                                                                     
+
+In [19]: fyodor = Author.objects.get(id=3)                                                                                                                                                 
+
+In [20]: will = Author.objects.get(id=4)                                                                                                                                                   
+
+In [21]: lau = Author.objects.get(id=5)                                                                                                                                                    
+
+In [22]: c_sharp.author_id.add(emily)                                                                                                                                                      
+
+In [23]: java.author_id.add(emily)                                                                                                                                                         
+
+In [24]: python.author_id.add(emily)                                                                                                                                                       
+
+In [25]: c_sharp.author_id.add(fyodor)                                                                                                                                                     
+
+In [26]: java.author_id.add(fyodor)                                                                                                                                                        
+
+In [27]: python.author_id.add(fyodor)                                                                                                                                                      
+
+In [28]: php.author_id.add(fyodor)                                                                                                                                                         
+
+In [29]: c_sharp.author_id.add(will)                                                                                                                                                       
+
+In [30]: java.author_id.add(will)                                                                                                                                                          
+
+In [31]: python.author_id.add(will)                                                                                                                                                        
+
+In [32]: php.author_id.add(will)                                                                                                                                                           
+
+In [33]: ruby.author_id.add(will)                                                                                                                                                          
+
+In [34]: python.author_id.all()                                                                                                                                                            
+Out[34]: <QuerySet [<Author: Author object>, <Author: Author object>, <Author: Author object>]>
+
+In [35]: python.author_id.all.values()                                                                                                                                                     
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-35-ea21465a35c3> in <module>
+----> 1 python.author_id.all.values()
+
+AttributeError: 'function' object has no attribute 'values'
+
+In [36]: python.author_id.all().values()                                                                                                                                                   
+Out[36]: <QuerySet [{'id': 2, 'first_name': 'Emily', 'last_name': 'Dickinson', 'created_at': datetime.datetime(2019, 2, 18, 22, 29, 25, 555268, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 29, 25, 555325, tzinfo=<UTC>), 'notes': ''}, {'id': 3, 'first_name': 'Fyodor', 'last_name': 'Dostoevsky', 'created_at': datetime.datetime(2019, 2, 18, 22, 29, 48, 631349, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 29, 48, 631404, tzinfo=<UTC>), 'notes': ''}, {'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'created_at': datetime.datetime(2019, 2, 18, 22, 30, 12, 681514, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 41, 7, 30041, tzinfo=<UTC>), 'notes': ''}]>
+
+In [37]: python.author_id.remove(emily)                                                                                                                                                    
+
+In [38]: java.author_id.add(lau)                                                                                                                                                           
+
+In [39]: fyodor.book_id.all().values()                                                                                                                                                     
+Out[39]: <QuerySet [{'id': 1, 'title': 'C#', 'desc': '', 'created_at': datetime.datetime(2019, 2, 18, 22, 25, 39, 978238, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 39, 44, 446160, tzinfo=<UTC>)}, {'id': 2, 'title': 'Java', 'desc': '', 'created_at': datetime.datetime(2019, 2, 18, 22, 27, 43, 785108, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 27, 43, 785189, tzinfo=<UTC>)}, {'id': 3, 'title': 'Python', 'desc': '', 'created_at': datetime.datetime(2019, 2, 18, 22, 27, 57, 343245, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 27, 57, 343301, tzinfo=<UTC>)}, {'id': 4, 'title': 'PHP', 'desc': '', 'created_at': datetime.datetime(2019, 2, 18, 22, 28, 4, 418512, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 28, 4, 418566, tzinfo=<UTC>)}]>
+
+In [40]: ruby.author_id.all().values()                                                                                                                                                     
+Out[40]: <QuerySet [{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'created_at': datetime.datetime(2019, 2, 18, 22, 30, 12, 681514, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 22, 41, 7, 30041, tzinfo=<UTC>), 'notes': ''}]>
+
+In [41]:   
